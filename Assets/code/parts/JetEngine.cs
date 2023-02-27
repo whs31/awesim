@@ -11,7 +11,7 @@ public class JetEngine : MonoBehaviour
     [SerializeField] private GameObject m_physicsObject;
 
     [Space(10)]
-    [Header("Engine Properties")]
+    [Header("Part Properties")]
     [Tooltip("In kilogram-force")] [SerializeField] private float m_thrust = 4100;
 
     void Update()
@@ -21,8 +21,8 @@ public class JetEngine : MonoBehaviour
 
     private void FixedUpdate()
     {
-        Vector3 forwardForce = (PlayerInput.Throttle * m_thrust) * (-m_physicsObject.transform.forward);
+        Vector3 forwardForce = (PlayerInput.Throttle * m_thrust * 2) * (-m_physicsObject.transform.forward);
         m_physicsObject.GetComponent<Rigidbody>().AddForce(forwardForce);
-        DrawArrow.DebugColor(m_physicsObject.transform.position, forwardForce / 500, Color.red);
+        DrawArrow.DebugColor(m_physicsObject.transform.position, forwardForce / 5000, Color.red);
     }
 }
